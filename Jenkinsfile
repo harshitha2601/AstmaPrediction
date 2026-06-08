@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Clone') {
             steps {
                 echo 'Repository cloned successfully'
@@ -10,13 +11,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'py --version'
+                bat '"D:\\harshitha\\Astma_predictor\\backend\\venv\\Scripts\\python.exe" --version'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'py -m py_compile app.py'
+                bat '"D:\\harshitha\\Astma_predictor\\backend\\venv\\Scripts\\python.exe" -m py_compile app.py'
             }
         }
 
