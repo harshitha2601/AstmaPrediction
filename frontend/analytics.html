@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Asthma AI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                     url('https://images.unsplash.com/photo-1584982751601-97dcc096659c') no-repeat center center/cover;">
+
+    <nav>
+        <div class="logo"><i class="fas fa-lungs"></i> AsthmaAI</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="predict.html">Predict</a>
+            <a href="analytics.html" class="active">Analytics</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Personalized Recommendation Banner -->
+        <div id="personalized-banner" class="glass-card" style="margin-bottom: 30px; display: none;">
+            <h2 id="banner-title"><i class="fas fa-user-md"></i> Your Personalised Advice</h2>
+            <p id="banner-text">Based on your prediction result...</p>
+        </div>
+
+        <div class="container-grid">
+            
+            <!-- Prevention Tips -->
+            <div class="glass-card">
+                <h2><i class="fas fa-shield-alt"></i> Prevention Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-mask"></i>
+                        <h3>Wear Masks</h3>
+                        <p>Use N95 masks in high pollution zones.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-home"></i>
+                        <h3>Keep Indoor Air Clean</h3>
+                        <p>Use air purifiers and keep windows closed.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-smoking-ban"></i>
+                        <h3>Avoid Smoke</h3>
+                        <p>Quit smoking and avoid secondhand smoke.</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-stethoscope"></i>
+                        <h3>Regular Checkups</h3>
+                        <p>Visit your doctor for lung function tests.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="glass-card">
+                <h2><i class="fas fa-chart-bar"></i> Risk Factors</h2>
+                <div style="height: 250px;">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Emergency Section -->
+        <div class="glass-card" style="margin-top: 30px;">
+            <div class="emergency-box">
+                <div class="emergency-content">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Emergency Action Plan</h3>
+                    <p>If you experience shortness of breath, wheezing, or difficulty speaking, use your rescue inhaler immediately and seek medical help.</p>
+                </div>
+                <button class="btn-danger"><i class="fas fa-phone-alt"></i> Call Emergency</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Check for personalized results
+        document.addEventListener('DOMContentLoaded', function() {
+            const risk = localStorage.getItem("asthmaRisk");
+            
+            if (risk) {
+                const banner = document.getElementById('personalized-banner');
+                const title = document.getElementById('banner-title');
+                const text = document.getElementById('banner-text');
+                
+                banner.style.display = "block";
+                
+                if (risk === "high") {
+                    banner.style.borderColor = "#ff4b4b";
+                    banner.style.background = "rgba(255, 75, 75, 0.2)";
+                    title.innerHTML = '<i class="fas fa-exclamation-circle" style="color: #ff4b4b;"></i> High Risk - Immediate Actions Needed';
+                    text.innerHTML = "Your results indicate high risk. <strong>Please:</strong><br>1. Use your rescue inhaler as prescribed<br>2. Avoid outdoor activities<br>3. Consult your doctor within 24 hours";
+                } else {
+                    banner.style.borderColor = "#00e676";
+                    banner.style.background = "rgba(0, 230, 118, 0.2)";
+                    title.innerHTML = '<i class="fas fa-check-circle" style="color: #00e676;"></i> Low Risk - Keep It Up!';
+                    text.innerHTML = "Your results show low risk. <strong>Keep maintaining:</strong><br>1. Regular exercise<br>2. Clean environment<br>3. Healthy diet";
+                }
+                
+                // Clear the storage after showing
+                localStorage.removeItem("asthmaRisk");
+            }
+
+            // Initialize Chart
+            const ctx = document.getElementById('riskChart').getContext('2d');
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, '#00d2ff');
+            gradient.addColorStop(1, '#3a7bd5');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Smoking', 'PM2.5', 'Pollen', 'Dust', 'Pollution'],
+                    datasets: [{
+                        label: 'Contribution to Risk (%)',
+                        data: [35, 25, 20, 10, 10],
+                        backgroundColor: gradient,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.1)' }, ticks: { color: '#fff' } },
+                        x: { grid: { display: false }, ticks: { color: '#fff' } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

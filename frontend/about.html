@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Asthma AI</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS RESET & VARIABLES --- */
+        :root {
+            --primary-color: #00d2ff;
+            --secondary-color: #3a7bd5;
+            --text-color: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1579154204601-01588f351e67') no-repeat center center/cover;
+            min-height: 100vh;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 80px; /* Space for fixed nav */
+        }
+
+        /* --- NAVIGATION (Same as Home) --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            margin-left: 30px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        /* --- CARDS --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        /* --- FEATURE LIST --- */
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+        }
+
+        .feature-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0, 210, 255, 0.1);
+        }
+
+        .feature-item span {
+            font-weight: 500;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .stat-box p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                padding: 15px 20px;
+            }
+            .nav-links a {
+                margin-left: 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><i class="fas fa-lungs"></i> AsthmaAI</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html" style="color: var(--primary-color);">About</a>
+            <a href="predict.html">Predict</a>
+            <a href="analytics.html">Analytics</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Left Card: Mission -->
+        <div class="glass-card">
+            <h2>Our Mission</h2>
+            <p>
+                Asthma attacks can often be prevented with the right information. 
+                Our goal is to empower patients and healthcare providers with 
+                <strong>real-time predictive analytics</strong>.
+            </p>
+            <p>
+                By combining environmental data with personal health metrics, 
+                we provide a risk score that helps you take action before symptoms worsen.
+            </p>
+
+            <div class="stats-container">
+                <div class="stat-box">
+                    <h3>95%</h3>
+                    <p>Accuracy</p>
+                </div>
+                <div class="stat-box">
+                    <h3>24/7</h3>
+                    <p>Monitoring</p>
+                </div>
+                <div class="stat-box">
+                    <h3>AI</h3>
+                    <p>Powered</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Card: Data Points -->
+        <div class="glass-card">
+            <h2>How It Works</h2>
+            <p style="margin-bottom: 25px;">We analyze multiple factors to calculate your risk:</p>
+            
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <i class="fas fa-user"></i>
+                    <span>Age & Gender</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-smoking"></i>
+                    <span>Smoking History</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-industry"></i>
+                    <span>Pollution Exposure</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-pollen"></i>
+                    <span>Pollen Levels</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-smog"></i>
+                    <span>PM2.5 Levels</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span>Temperature</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
