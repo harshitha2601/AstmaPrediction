@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                echo 'Repository cloned successfully'
-            }
-        }
-
         stage('Build') {
             steps {
                 bat '"D:\\harshitha\\Astma_predictor\\backend\\venv\\Scripts\\python.exe" --version'
