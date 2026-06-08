@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     stages {
-
         stage('Clone') {
             steps {
                 echo 'Repository cloned successfully'
@@ -11,13 +10,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'python --version'
+                bat 'py --version'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'python -m py_compile app.py'
+                bat 'py -m py_compile app.py'
             }
         }
 
